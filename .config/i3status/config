@@ -1,0 +1,87 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        colors = true
+        interval = 5
+        color_good = "#81a1c1" # Light green
+        color_degraded = "#fafe7c" # Light yellow
+        color_bad = "#ff7770" # Light red
+}
+
+order += "volume master"
+#order += "ethernet eth0"
+#order += "wireless wlan0"
+#order += "wireless wlan1"
+#order += "load"
+order += "cpu_usage"
+#order += "cpu_temperature 0"
+#order += "disk /"
+#order += "battery 0"
+order += "memory"
+order += "time"
+
+battery 0 {
+  last_full_capacity = true
+  # format = "%status %percentage"
+  format = "%percentage"
+  path = "/sys/class/power_supply/CMB0/uevent"
+}
+
+ethernet eth0 {
+# if you use %speed, i3status requires root privileges
+  format_up = " eth0   %quality  %essid   %bitrate  %ip"
+  format_down = "test"
+}
+
+wireless wlan0 {
+  format_up = "wlan0   %quality  %essid   %bitrate  %ip"
+  # format_down = "wlan0 "
+  format_down = ""
+}
+
+wireless wlan1 {
+  format_up = "wlan1  %quality  %essid   %bitrate  %ip"
+  # format_down = "wlan1 "
+  format_down = ""
+}
+
+memory {
+	format = "  %used / %total (%percentage_used)"
+	threshold_degraded = "10%"
+	threshold_critical = "5%"
+}
+
+time {
+  format = "  %a, %d %b %H:%M"
+}
+
+load {
+  format = "%1min"
+}
+
+cpu_usage {
+  format = "  %usage"
+}
+
+cpu_temperature 0 {
+  format = "%degrees °C"
+  max_threshold = "65"
+}
+
+disk "/" {
+  format = "  %free %avail"
+}
+
+volume master {
+  format = "  %volume"
+  format_muted = "  %volume"
+  device = "default"
+  mixer = "Master"
+  mixer_idx = 0
+}
