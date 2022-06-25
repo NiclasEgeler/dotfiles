@@ -1,0 +1,5 @@
+export TERMINAL=alacritty;
+feh --bg-scale /usr/share/backgrounds/nord.png;
+vmware-user-suid-wrapper;
+eval "$(ssh-agent -s)";
+ssh-add ~/.ssh/id_ed25519;
